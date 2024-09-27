@@ -11,7 +11,7 @@ Ensure that the following prerequisites are met:
 1. Clone the repository
 `git clone https://github.com/guchiyams/autonomous-uav.git`
 2. In the root directory, run the command
-`sim_vehicle.py -v ArduCopter --out="localhost:14550 --out="localhost:14551`
+`sim_vehicle.py -v ArduCopter --out="localhost:14550" --out="localhost:14551"`
 3. Run QGroundControl
 `./QGroundControl.AppImage`
 
