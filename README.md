@@ -4,7 +4,7 @@
 1. Clone the repository and change the working directory:
 
     `git clone https://github.com/guchiyams/autonomous-uav.git && cd auto-uav`
-3. In the root directory, run the command:
+3. Run the command:
 
     `source helper.sh`
 4. Initialize virtual environment:
