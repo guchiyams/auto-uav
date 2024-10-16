@@ -1,16 +1,16 @@
 # autonomous-uav
 
 ### Running the arUco detection
-1. Clone the repository: 
+1. Clone the repository and change the working directory:
 
-    `git clone https://github.com/guchiyams/autonomous-uav.git`
-2. In the root directory, run the command:
+    `git clone https://github.com/guchiyams/autonomous-uav.git && cd auto-uav`
+3. In the root directory, run the command:
 
     `source helper.sh`
-3. Initialize virtual environment:
+4. Initialize virtual environment:
 
     `init_venv`
-4. Run the main program:
+5. Run the main program:
 
     `run`
 
