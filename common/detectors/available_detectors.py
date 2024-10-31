@@ -5,8 +5,8 @@ This will later be used when we make the detector we use configurable using a co
 
 from enum import Enum
 
-from common.object_detection.detector_manager.cv2 import Cv2Detector
-from common.object_detection.detector_manager.yolov3_tiny import YoloDetector
+from common.detectors.cv2 import Cv2Detector
+from common.detectors.yolov3_tiny import YoloDetector
 
 
 class AvailableDetectors(Enum):

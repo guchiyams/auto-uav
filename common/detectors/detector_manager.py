@@ -2,8 +2,8 @@
 
 from types import SimpleNamespace
 
-from common.object_detection.detector_manager.detector import Detector
-from common.object_detection.detector_manager.available_detectors import AvailableDetectors
+from common.detectors.detector import Detector
+from common.detectors.available_detectors import AvailableDetectors
 from common.utils.log import get_logger
 
 logger = get_logger(__name__)
