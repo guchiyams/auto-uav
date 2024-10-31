@@ -10,9 +10,6 @@
 4. Run the command:
 
     `source helper.sh`
-5. Initialize virtual environment:
-
-    `init_venv`
 6. Run the main program:
 
     `run`
