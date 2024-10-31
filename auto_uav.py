@@ -4,8 +4,8 @@ import cv2
 from types import SimpleNamespace
 
 from common.fps_counter import FPSTracker
-from common.object_detection.detector_manager.detector import Detector
-from common.object_detection.detector_manager.detector_manager import DetectorManager
+from common.detectors.detector import Detector
+from common.detectors.detector_manager import DetectorManager
 from common.utils.json_utils import read_json
 from common.utils.log import get_logger
 from common.video_capture import VideoCapture

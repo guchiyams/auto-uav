@@ -3,7 +3,7 @@
 import cv2
 import numpy as np
 
-from common.object_detection.detector_manager.detector import Detector
+from common.detectors.detector import Detector
 from common.utils.log import get_logger
 
 logger = get_logger(__name__)
