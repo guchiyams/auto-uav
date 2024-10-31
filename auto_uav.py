@@ -31,8 +31,7 @@ class AutoUav:
         """
         self.conf = conf
         self.video_capture: VideoCapture = VideoCapture(conf.video)
-        detector_manager: DetectorManager = DetectorManager(conf.detector)
-        self.detector: Detector = detector_manager.get_detector()
+        self.detector: Detector = DetectorManager(conf.detector).get_detector()
         self.fps_tracker: FPSTracker = FPSTracker()
 
     def clean_up(self) -> None:
