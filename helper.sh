@@ -53,7 +53,7 @@ install_requirements() {
 
 # Function to initialize the virtual environment
 init_venv() {
-    local VENV_DIR="venv"
+    local VENV_DIR=$1
 
     # Create the virtual environment if it doesn't exist
     create_venv_if_not_exists "$VENV_DIR"
@@ -77,9 +77,11 @@ run() {
     local VENV_DIR="venv"
     local SCRIPT="auto_uav.py"
 
+    init_venv $VENV_DIR
+
     # Check if the virtual environment exists
     if [ ! -d "$VENV_DIR" ]; then
-        echo "Error: Virtual environment not found. Run init_venv first."
+        echo "Error: Virtual environment not found."
         return 1
     fi
 
@@ -94,7 +96,7 @@ run() {
     
     # Run the auto_uav.py script
     echo "Running $SCRIPT inside virtual environment..."
-    python "$SCRIPT"
+    python -u "$SCRIPT"
     
     # Capture the exit code of the script
     local EXIT_CODE=$?
