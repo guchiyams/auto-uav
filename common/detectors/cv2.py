@@ -42,7 +42,7 @@ class Cv2Detector(Detector):
         )
 
         if print_corners and corners:
-            print(f"DETECTED CORNER: {corners}")
+            logger.debug(f"DETECTED CORNER: {corners}")
 
         return corners, ids, rejected
 
