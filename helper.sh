@@ -72,10 +72,10 @@ init_venv() {
     fi
 }
 
-# Function to run the main.py script inside the virtual environment
+# Function to run the auto_uav.py script inside the virtual environment
 run() {
     local VENV_DIR="venv"
-    local SCRIPT="main.py"
+    local SCRIPT="auto_uav.py"
 
     # Check if the virtual environment exists
     if [ ! -d "$VENV_DIR" ]; then
@@ -83,7 +83,7 @@ run() {
         return 1
     fi
 
-    # Check if main.py exists
+    # Check if auto_uav.py exists
     if [ ! -f "$SCRIPT" ]; then
         echo "Error: $SCRIPT not found."
         return 1
@@ -92,7 +92,7 @@ run() {
     # Activate the virtual environment
     source "$VENV_DIR/bin/activate"
     
-    # Run the main.py script
+    # Run the auto_uav.py script
     echo "Running $SCRIPT inside virtual environment..."
     python "$SCRIPT"
     
@@ -111,7 +111,7 @@ usage() {
     echo "Usage: source setup_venv.sh"
     echo "Then call the following functions:"
     echo " - init_venv           : Create/activate venv and install requirements."
-    echo " - run                : Run main.py inside the virtual environment."
+    echo " - run                : Run auto_uav.py inside the virtual environment."
 }
 
 # If the script is executed directly, show usage instructions

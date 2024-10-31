@@ -4,14 +4,16 @@ import cv2
 import time
 import numpy as np
 
+
 class FPSTracker:
     """FPS Tracker.
-    
+
     Attributes:
         last_time: The last time FPS was updated
         frame_count: Number of frames
         fps: Frames per second
     """
+
     def __init__(self) -> None:
         """Construct FPSTracker."""
         # use perf_counter for high precision
@@ -34,12 +36,18 @@ class FPSTracker:
 
     def put_fps_on_frame(self, frame: np.ndarray) -> None:
         """Puts the FPS on the screen top left.
-        
+
         Args:
             frame: np.ndarray that represents the video frame
         """
-        cv2.putText(frame, f"FPS: {self.fps:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+        cv2.putText(
+            frame, f"FPS: {self.fps:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2
+        )
 
     def get_fps(self) -> float:
-        """Get current FPS."""
+        """Get current FPS.
+
+        Returns:
+            The current FPS
+        """
         return self.fps

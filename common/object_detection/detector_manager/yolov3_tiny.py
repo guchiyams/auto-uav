@@ -1,6 +1,7 @@
 """ArUco detector using trained YoloV3 tiny."""
 
-from common.obj_detection.aruco_detectors.detector import Detector
+from common.object_detection.detector_manager.detector import Detector
+
 
 # TODO: Implement YoloDetector
 class YoloDetector(Detector):
