@@ -1,0 +1,13 @@
+{
+    "detector": {
+        "detector_type": "CV2",
+        "model_file": ""
+    },
+    "video": {
+        "source_idx": 0,
+        "width": 640,
+        "height": 480,
+        "max_buffer_size": 5,
+        "show_video": true
+    }
+}

@@ -1,7 +1,10 @@
+"""Module for video capture."""
+
 import cv2
 import numpy
 import queue
 import threading
+from types import SimpleNamespace
 from typing import Union
 
 from common.utils.log import get_logger
@@ -9,32 +12,35 @@ from common.utils.log import get_logger
 logger = get_logger(__name__)
 
 
-class VisionCapture:
+class VideoCapture:
     """Wrapper for the cv2.VideoCapture.
-    
+
     This class implements a video capture in a separate thread. This allows the object detection
     to not be blocked by the video capture process, thus improving performance.
+
+    Attr:
+        video_cap: Wrapped cv2 VideoCapture object
+        frame_buffer: Video frame buffer
+        stop_event: Thread event to stop streaming
     """
-    def __init__(self, src: int = 0, width: int = 640, height: int = 480, buffer_size: int = 6) -> None:
-        """Initialized VisionCaptureThreaded.
-        
+
+    def __init__(self, video_conf: SimpleNamespace) -> None:
+        """Initialized VideoCaptureThreaded.
+
         Args:
-            src: Camera source index
-            width: Video feed width
-            height: Video feed height
-            buffer_size: Frame buffer size
+            video_conf: Video configuration
 
         Raises:
             RunTimeError: Failed to initialize Video Capture
         """
-        self.video_cap: cv2.VideoCapture = cv2.VideoCapture(src)
+        self.video_cap: cv2.VideoCapture = cv2.VideoCapture(video_conf.source_idx)
 
         if self.video_cap is None or not self.video_cap.isOpened():
             raise RuntimeError("Failed to initialize Video Capture. Try a different index.")
-        
-        self.video_cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-        self.video_cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-        self.frame_buffer: queue.Queue = queue.Queue(maxsize=buffer_size)
+
+        self.video_cap.set(cv2.CAP_PROP_FRAME_WIDTH, video_conf.width)
+        self.video_cap.set(cv2.CAP_PROP_FRAME_HEIGHT, video_conf.height)
+        self.frame_buffer: queue.Queue = queue.Queue(maxsize=video_conf.max_buffer_size)
         self.stop_event: threading.Event = threading.Event()
 
     def start(self) -> None:
@@ -47,7 +53,7 @@ class VisionCapture:
         """Capture frames from the camera and put it in the buffer."""
         while not self.stop_event.is_set():
             # ret: bool, frame: numpy.ndarray
-            ret, frame =self.video_cap.read()
+            ret, frame = self.video_cap.read()
             if not ret:
                 break
             # only populate to frame buffer if there is available space
@@ -57,15 +63,15 @@ class VisionCapture:
 
     def stop(self) -> None:
         """Stop the video capture thread."""
+        logger.info("Stopping video capture")
         self.stop_event.set()
         self.capture_thread.join()
 
     def read(self) -> Union[numpy.ndarray, None]:
         """Read a frame from the frame_buffer (not from the VideoCapture).
-        
+
         Returns: A numpy.ndarray representing a frame or None if frame buffer is empty
         """
         if not self.frame_buffer.empty():
             return self.frame_buffer.get()
         return None
-    

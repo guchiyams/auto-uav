@@ -3,7 +3,7 @@
 import cv2
 import numpy as np
 
-from common.obj_detection.aruco_detectors.detector import Detector
+from common.object_detection.detector_manager.detector import Detector
 from common.utils.log import get_logger
 
 logger = get_logger(__name__)
@@ -11,20 +11,20 @@ logger = get_logger(__name__)
 
 class Cv2Detector(Detector):
     """ArUco object detector.
-    
+
     Attributes:
         aruco_dict: Predefined dictionary of aruco markers
         parameters: Detection parameters
     """
+
     def __init__(self) -> None:
         """Constructor for Cv2Detector."""
-        logger.info("Initializing Cv2 detector")
         self.aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
         self.parameters = cv2.aruco.DetectorParameters()
 
     def detect(self, frame: np.ndarray, print_corners: bool = False) -> tuple:
         """Detect the arUco marker.
-        
+
         This method is the concrete implementation of the parent class abstract method.
 
         Args:
@@ -37,16 +37,18 @@ class Cv2Detector(Detector):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # detect the markers in the frame
-        corners, ids, rejected = cv2.aruco.detectMarkers(gray, self.aruco_dict, parameters=self.parameters)
+        corners, ids, rejected = cv2.aruco.detectMarkers(
+            gray, self.aruco_dict, parameters=self.parameters
+        )
 
         if print_corners and corners:
             print(f"DETECTED CORNER: {corners}")
 
         return corners, ids, rejected
-    
+
     def draw_detections(self, frame: np.ndarray, corners: list, ids: list) -> np.ndarray:
         """Draws the detected marker's bounding boxes on the frame.
-        
+
         Args:
             frame: np.ndarray representing the video frame
             corners: The corners of the detected markers

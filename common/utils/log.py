@@ -7,11 +7,14 @@ Typical usage:
 """
 
 import logging
+from rich.logging import RichHandler
 
-handler = logging.StreamHandler(stream=None)
-handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(" "message)s")
-handler.setFormatter(formatter)
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(name)s - %(" "message)s",
+    datefmt="[%Y-%m-%d %H:%M:%S]",
+    handlers=[RichHandler()],
+)
 
 
 def get_logger(name: str) -> logging.Logger:
@@ -24,6 +27,4 @@ def get_logger(name: str) -> logging.Logger:
     """
 
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(handler)
     return logger

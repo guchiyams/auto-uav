@@ -1,9 +1,0 @@
-@startuml
-loop at target
-    Camera -> TargetIdentifier: frame
-    TargetIdentifier -> PathPlanner: frame and id'ed box coordinates
-    PathPlanner -> FlightController : drone params (positional, velocity, attitude)
-end
-FlightController -> Comm: GPS waypoint
-Comm -> : GPS waypoint to UGV
-@enduml
