@@ -1,16 +1,19 @@
 # autonomous-uav
 
 ### Running the arUco detection
-1. Install and initialize git lfs:
+1. Ensure git lfs is installed and initialized:
 
     https://git-lfs.com/
-3. Clone the repository and change the working directory:
+2. Clone the repository:
 
     `git clone https://github.com/guchiyams/autonomous-uav.git && cd auto-uav`
+3. Change the working directory:
+
+    `cd vision`
 4. Run the command:
 
     `source helper.sh`
-6. Run the main program:
+5. Run the main program:
 
     `run`
 
