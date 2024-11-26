@@ -3,7 +3,7 @@
 from common.detectors.detector import Detector
 
 
-# TODO: Implement YoloDetector
+# TODO: Implement YoloDetector - yolov4-tiny
 class YoloDetector(Detector):
     def __init__(self) -> None:
         pass

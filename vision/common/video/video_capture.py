@@ -8,6 +8,7 @@ from types import SimpleNamespace
 from typing import Union
 
 from common.utils.log import get_logger
+from common.video.camera_calibrator import CameraCalibrator
 
 logger = get_logger(__name__)
 
@@ -25,7 +26,7 @@ class VideoCapture:
     """
 
     def __init__(self, video_conf: SimpleNamespace) -> None:
-        """Initialized VideoCaptureThreaded.
+        """Initializes VideoCaptureThreaded.
 
         Args:
             video_conf: Video configuration

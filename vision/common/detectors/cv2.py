@@ -12,6 +12,9 @@ logger = get_logger(__name__)
 class Cv2Detector(Detector):
     """ArUco object detector.
 
+    This detector is a wrapper for CV2 aruco marker detection. It does not use a vision model. It
+    is implemented with pattern matching.
+
     Attributes:
         aruco_dict: Predefined dictionary of aruco markers
         parameters: Detection parameters
@@ -42,7 +45,7 @@ class Cv2Detector(Detector):
         )
 
         if print_corners and corners:
-            logger.debug(f"DETECTED CORNER: {corners}")
+            logger.debug(f"DETECTED ARUCO MARKER: \n\tcorner: {corners}\n\tid: {ids}")
 
         return corners, ids, rejected
 

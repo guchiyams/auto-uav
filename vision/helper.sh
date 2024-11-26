@@ -2,7 +2,7 @@
 
 # Function to create a virtual environment if it doesn't exist
 create_venv_if_not_exists() {
-    local VENV_DIR="venv"
+    local VENV_DIR=".venv"
 
     # Check if the virtual environment directory exists
     if [ ! -d "$VENV_DIR" ]; then
@@ -24,7 +24,7 @@ create_venv_if_not_exists() {
 
 # Function to install dependencies from requirements.txt
 install_requirements() {
-    local VENV_DIR="venv"
+    local VENV_DIR=".venv"
 
     # Activate the virtual environment
     source "$VENV_DIR/bin/activate"
@@ -74,8 +74,10 @@ init_venv() {
 
 # Function to run the auto_uav.py script inside the virtual environment
 run() {
-    local VENV_DIR="venv"
+    local VENV_DIR=".venv"
     local SCRIPT="auto_uav.py"
+
+    export PYTHONDONTWRITEBYTECODE=1
 
     init_venv $VENV_DIR
 
